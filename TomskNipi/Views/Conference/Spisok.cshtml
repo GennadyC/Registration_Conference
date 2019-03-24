@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TomskNipi.Models.Sections>
+@{
+    ViewBag.Title = "Все секции";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Create">Добавить секцию</a>
+    <table class="table">
+        <tr><td>Название</td><td>Город</td><td>Улица</td></tr>
+        @foreach (var item in Model)
+        {
+            <tr><td>@item.Name</td><td>@item.City</td><td>@item.Location</td></tr>
+        }
+    </table>
+}
+else
+{
+    <p>Просмотр не доступен без авторизации</p><br />
+    <a asp-controller="Account" asp-action="Login">Вход</a>
+    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+}
